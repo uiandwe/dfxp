@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block content %}
+{%  load template_function %}
+        <div class="container">
+            <div class="form-wrapper">
+                <form id="modal-report" aria-hidden="false" action="/upload/" method="post" enctype="multipart/form-data" autocomplete="off">{% csrf_token %}
+                   <div class="form-group">
+                        <input type="file" name="file" style="visibility:hidden;" id="pdffile" />
+                        <div class="input-append">
+                            <input type="text" name="subfile" id="subfile" class="input-xlarge">
+                            <a class="btn" onclick="$('#pdffile').click();">Browse</a>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">파일 변환</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+
+{% endblock %}

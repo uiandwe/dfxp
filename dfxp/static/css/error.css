@@ -1,0 +1,9 @@
+
+
+
+
+section.error{ padding: 150px 0; background-color: #529A86; color:white;}
+section.error .container {}
+section.error .container p{padding: 10px 0;}
+section.error .container a{color:white;}
+section.error .error_wrapper{text-align: center;}
