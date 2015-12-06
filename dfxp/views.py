@@ -63,7 +63,7 @@ def upload(req):
 
             pwd = module_dir+filename
             print module_dir
-            fp = open('%s/%s' % (module_dir, filename), 'wb')
+
             file_data = ""
             for chunk in file.chunks():
                 file_data += chunk
@@ -77,6 +77,8 @@ def upload(req):
                 file_data = unicode(file_data, 'UTF-16LE').encode('utf-8')
             elif chdt["encoding"] == "utf-8":
                 file_data = unicode(file_data, 'UTF-8').encode('utf-8')
+            elif chdt["encoding"] == "ISO-8859-2":
+                file_data = unicode(file_data, 'cp949').encode('utf-8')
             else:
                 return render(req, 'error.html', {'type': 'encoding', 'encoding': chdt["encoding"]})
             # print file_data
@@ -94,6 +96,7 @@ def upload(req):
             # file_data = re.sub("<!--[\sa-zA-Zㄱ-ㅣ가-힣0-9\{\}\;\,\#\:\/\.\-\(\)\\\]+-->", "", file_data)
             # print file_data
             #파일은 utf-8로 인코딩
+            fp = open('%s/%s' % (module_dir, filename), 'wb')
             fp.write(DFXPWriter().write(SAMIReader().read(file_data)).encode('utf-8'))
             # fp.write(file_data.encode('utf-8'))
             fp.close()
